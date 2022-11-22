@@ -15,7 +15,7 @@ public class CourseJdbcRepository {
 
     private static String INSERT_QUERY =
             """
-                    insert into course(id, name, author)
+                    insert Longo course(id, name, author)
                     values(?, ?, ?);
          
             """;
@@ -35,10 +35,10 @@ public class CourseJdbcRepository {
         springJdbcTemplate.update(INSERT_QUERY,
                 course.getId(), course.getName(), course.getAuthor());
     }
-    public void deleteById(int id){
+    public void deleteById(Long id){
         springJdbcTemplate.update(DELETE_QUERY, id);
     }
-    public Course selectById(int id){
+    public Course selectById(Long id){
         //ResultSet -> Bean -> Row Mapper ->
        return springJdbcTemplate.queryForObject(SELECT_QUERY,
                new BeanPropertyRowMapper<>(Course.class), id);
